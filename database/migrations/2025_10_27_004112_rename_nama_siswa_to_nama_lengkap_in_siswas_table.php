@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('siswas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-
+        Schema::table('siswas', function (Blueprint $table) {
+            $table->renamecolumn('nama_siswa', 'nama_lengkap');
         });
+        
     }
 
     /**
@@ -27,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswas');
+        Schema::table('siswas', function (Blueprint $table) {
+            $table->renamecolumn('nama_siswa', 'nama_lengkap');
+        });
     }
 };
